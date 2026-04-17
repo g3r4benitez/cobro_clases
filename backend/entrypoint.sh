@@ -2,6 +2,8 @@
 set -e
 
 echo "Running database migrations..."
+# With SQLite (DATABASE_URL=sqlite+aiosqlite:///...), this command also creates
+# the .db file automatically if it does not exist.
 alembic upgrade head
 
 echo "Starting server..."

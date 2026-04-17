@@ -13,16 +13,9 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Override sqlalchemy.url with env vars
-DB_USER = os.getenv("POSTGRES_USER", "kickuser")
-DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", "kickpassword")
-DB_HOST = os.getenv("POSTGRES_HOST", "localhost")
-DB_PORT = os.getenv("POSTGRES_PORT", "5432")
-DB_NAME = os.getenv("POSTGRES_DB", "kickmanager")
-config.set_main_option(
-    "sqlalchemy.url",
-    f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
-)
+# Override sqlalchemy.url with DATABASE_URL env var
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./kickmanager.db")
+config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 from app.db.base import Base
 from app.db import models  # noqa: F401 — ensures all models are registered

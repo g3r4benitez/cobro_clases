@@ -44,3 +44,8 @@ Thumbs.db
 
 # Alembic
 backend/migrations/versions/*.pyc
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal

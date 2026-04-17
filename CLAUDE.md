@@ -1,6 +1,6 @@
 # cobro_clases Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-04-13
+Auto-generated from all feature plans. Last updated: 2026-04-15
 
 ## Active Technologies
 - Python 3.11 (backend) / Node.js 20 + React 18 (frontend) + FastAPI, SQLAlchemy 2.0, Alembic (backend) · React 18, Vite, Bootstrap 5, Axios (frontend) (002-multi-select-asistencia)
@@ -24,6 +24,7 @@ cd src [ONLY COMMANDS FOR ACTIVE TECHNOLOGIES][ONLY COMMANDS FOR ACTIVE TECHNOLO
 Python 3.11+ (backend), Node.js 20+ / React 18 (frontend): Follow standard conventions
 
 ## Recent Changes
+- 003-sqlite-migration: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
 - 002-multi-select-asistencia: Added Python 3.11 (backend) / Node.js 20 + React 18 (frontend) + FastAPI, SQLAlchemy 2.0, Alembic (backend) · React 18, Vite, Bootstrap 5, Axios (frontend)
 
 - 001-kickboxing-management: Added Python 3.11+ (backend), Node.js 20+ / React 18 (frontend)
