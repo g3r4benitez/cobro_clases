@@ -1,35 +1,12 @@
 services:
-  # Servicio de base de datos PostgreSQL.
-  # OPCIONAL: solo necesario cuando DATABASE_URL apunta a PostgreSQL.
-  # Para desarrollo local con SQLite, este servicio no es necesario.
-  db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-kickmanager}
-      POSTGRES_USER: ${POSTGRES_USER:-kickuser}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kickpassword}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kickuser} -d ${POSTGRES_DB:-kickmanager}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
   backend:
     build: ./backend
     ports:
       - "8000:8000"
     environment:
-      # Usar PostgreSQL con Docker (default cuando se usa docker-compose completo):
-      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-kickuser}:${POSTGRES_PASSWORD:-kickpassword}@db:5432/${POSTGRES_DB:-kickmanager}
+      DATABASE_URL: sqlite+aiosqlite:///./kickmanager.db
       SECRET_KEY: ${SECRET_KEY}
       ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-480}
-    depends_on:
-      db:
-        condition: service_healthy
     volumes:
       - ./backend:/app
 
@@ -45,5 +22,3 @@ services:
       - ./frontend:/app
       - /app/node_modules
 
-volumes:
-  postgres_data:
