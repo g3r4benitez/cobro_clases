@@ -7,6 +7,7 @@ services:
       DATABASE_URL: sqlite+aiosqlite:///./kickmanager.db
       SECRET_KEY: ${SECRET_KEY}
       ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-480}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000}
     volumes:
       - ./backend:/app
 
